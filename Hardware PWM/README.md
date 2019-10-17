@@ -1,15 +1,16 @@
 # Hardware PWM
-Now that you have done the software version of PWM, it is time to start leveraging other features of these Timer Modules.
+For hardware PWM, an onboard LED is set to 50% of the duty cycle. When an onboard button is pressed, the LEDs duty cycle is 
+increasd by 10%. Once the LED reaches 100% duty cycle, it is then reset to 0%. The button will still increase the 
+duty cyle of the LED by 10% when pressed after reset. This process will occur as long as the board is recieving 
+power. 
 
-## Task
-Replicate the same behavior as in the software PWM, but by using the Timer Modules ability to directly output to a GPIO Pin instead of managing them in software. One way to think about this is: unless there are other functions running in your code, your system should initialize, set the Timer Modules, and then turn off the CPU.
+## Code
+The reason this is Hardware PWM is because the PWM functionality of the timer peripherals are used on the chip. 
+There is also another timer used to debounce the button to optimize the accuracy.
 
-## Deliverables
-You will need to have two folders in this repository, one for each of the processors that you used for this part of the lab. Remember to replace this README with your own.
+## Processors 
+- MSP430FR6989
+- MSP430G2553
 
-### Hints
-Read up on the P1SEL registers as well as look at the Timer modules ability to multiplex.
-
-## Extra Work
-### Using ACLK
-Some of these microprocessors have a built in ACLK which is extremely slow compared to the up to 25MHz available on some of them. What is the overall impact on the system when using this clock? Can you actually use your PWM code with a clock that slow?
+### Differences
+The only differences are the pin numbers for the LEDs and the buttons on the boards.
